@@ -1,0 +1,23 @@
+apply from: "$rootDir/gradle/wrapper.gradle"
+apply plugin:'scala'
+def slf4j_version='1.6.4'
+def scala_version='2.9.2'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    // Libraries needed to run the scala tools
+    scalaTools "org.scala-lang:scala-compiler:${scala_version}"
+
+	 // Libraries needed for scala api
+    compile "org.scala-lang:scala-library:${scala_version}"
+    compile "org.slf4j:slf4j-api:${slf4j_version}"
+	testCompile 'junit:junit:4.10'
+	testCompile "org.slf4j:slf4j-nop:${slf4j_version}"
+}
+
+compileTestScala {
+	scalaCompileOptions.useAnt = false
+}
